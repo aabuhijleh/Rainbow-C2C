@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import { Header } from "components/Header";
+import { labels } from "labels";
 
 interface AboutLinkProps {
   url: string;
@@ -33,29 +34,35 @@ export const AboutPage: React.FC = () => {
     <div>
       <Header
         title="Rainbow Click2Cal"
-        subtitle="Version: 1.7.20"
+        subtitle={`${labels.version}: 1.7.20`}
         toPage="settings"
       />
       <div>
-        <p>Server: {aboutData.server}</p>
-        <p>Telephony agent version: {aboutData.telephonyVersion}</p>
-        <p>System identifier: {aboutData.systemIdentifier}</p>
+        <p>
+          {labels.server}: {aboutData.server}
+        </p>
+        <p>
+          {labels.telephonyAgentVersion}: {aboutData.telephonyVersion}
+        </p>
+        <p>
+          {labels.systemIdentifier}: {aboutData.systemIdentifier}
+        </p>
         <p>
           © Copyright Alcatel-Lucent Enterprise, {new Date().getUTCFullYear()}
         </p>
         <div>
-          For more information about Rainbow, visit
+          {labels.forMoreInfo}
           <AboutLink
             url="http://www.openrainbow.com"
             label="www.openrainbow.com"
           />
           <AboutLink
             url="https://openrainbow.com/legals/terms-of-service"
-            label="Terms of Use"
+            label={labels.termsOfService}
           />
           <AboutLink
             url="https://www.al-enterprise.com/en/rainbow/data-privacy"
-            label="Privacy Policy"
+            label={labels.privacyStatement}
           />
         </div>
         <Button
