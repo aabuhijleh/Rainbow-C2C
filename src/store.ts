@@ -1,5 +1,5 @@
 import create from "zustand";
-import { Page } from "./pages/types";
+import { Page } from "pages/types";
 
 type State = {
   currentPage: Page;
