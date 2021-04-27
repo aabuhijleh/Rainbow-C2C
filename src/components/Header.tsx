@@ -29,7 +29,7 @@ const Title: React.FC<TitleProps> = ({ title, subtitle }) => {
   return (
     <Typography variant="h6">
       {title}
-      <Typography variant="subtitle2"> {subtitle}</Typography>
+      <Typography variant="subtitle2">{subtitle}</Typography>
     </Typography>
   );
 };
