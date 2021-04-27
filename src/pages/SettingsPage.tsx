@@ -18,7 +18,7 @@ interface SettingsRadioGroupProps {
   name: string;
   options: Options[];
   value: string;
-  // setValue(text: string): string;
+  setValue: (to: string) => void;
 }
 
 const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
@@ -26,7 +26,7 @@ const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
   formLabel,
   options,
   value,
-  // setValue
+  setValue,
 }) => {
   return (
     <FormControl component="fieldset">
@@ -35,7 +35,7 @@ const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
         // aria-label="gender"
         name={name}
         value={value}
-        // onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       >
         {options.map((option, index) => (
           <FormControlLabel
@@ -82,7 +82,8 @@ export const SettingsPage: React.FC = () => {
       label: "Forwarding to other phone",
     },
   ]);
-
+  // console.log("currentPhone:", currentPhone);
+  // console.log("forwardYourCalls:", forwardYourCalls);
   return (
     <div>
       <Header title={labels.telephonySettings} toPage="about" />
@@ -93,7 +94,7 @@ export const SettingsPage: React.FC = () => {
           formLabel="select the device for making and receiving phone calls."
           options={currentPhoneOptions}
           value={currentPhone}
-          // setValue={(e) => setCurrentPhone(e)}
+          setValue={(e) => setCurrentPhone(e)}
         />
       </div>
       <div>
@@ -104,7 +105,7 @@ export const SettingsPage: React.FC = () => {
           are out of office or unavailable"
           options={forwardYourCallsOptions}
           value={forwardYourCalls}
-          // setValue={setForwardYourCalls}
+          setValue={(e) => setForwardYourCalls(e)}
         />
       </div>
     </div>
