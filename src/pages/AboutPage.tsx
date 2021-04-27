@@ -2,13 +2,28 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { Header } from "components/Header";
 
+interface AboutLinkProps {
+  url: string;
+  label: string;
+}
+
+const AboutLink: React.FC<AboutLinkProps> = ({ url, label }) => {
+  return (
+    <div>
+      <a target="_blank" rel="noopener noreferrer" href={url}>
+        {label}
+      </a>
+    </div>
+  );
+};
+
 export const AboutPage: React.FC = () => {
-  const [aboutData, setAboutData] = useState({
+  const [aboutData] = useState({
     server: "openrainbow.com",
     telephonyVersion: "unknown",
     systemIdentifier: "PBX7467-...",
-    CopyrightYear: "2021",
   });
+
   return (
     <div>
       <Header
@@ -16,40 +31,28 @@ export const AboutPage: React.FC = () => {
         subtitle="Version: 1.7.20"
         toPage="settings"
       />
-      <div style={{ padding: "15px" }}>
+      <div>
         <p>Server: {aboutData.server}</p>
         <p>Telephony agent version: {aboutData.telephonyVersion}</p>
         <p>System identifier: {aboutData.systemIdentifier}</p>
-
-        <p style={{ padding: "15px 0" }}>
-          © Copyright Alcatel-Lucent Enterprise, {aboutData.CopyrightYear}
+        <p>
+          © Copyright Alcatel-Lucent Enterprise, {new Date().getUTCFullYear()}
         </p>
-
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           For more information about Rainbow, visit
-          <a
-            style={{ textDecoration: "none", display: "block" }}
-            href="http://www.openrainbow.com"
-            target="_blank"
-          >
-            www.openrainbow.com
-          </a>
-          <a
-            style={{ textDecoration: "none", display: "block" }}
-            target="_blank"
-            href="https://openrainbow.com/legals/terms-of-service"
-          >
-            Terms of Use
-          </a>
-          <a
-            style={{ textDecoration: "none", display: "block" }}
-            href="https://www.al-enterprise.com/en/rainbow/data-privacy"
-            target="_blank"
-          >
-            Privacy Policy
-          </a>
+          <AboutLink
+            url="http://www.openrainbow.com"
+            label="www.openrainbow.com"
+          />
+          <AboutLink
+            url="https://openrainbow.com/legals/terms-of-service"
+            label="Terms of Use"
+          />
+          <AboutLink
+            url="https://www.al-enterprise.com/en/rainbow/data-privacy"
+            label="Privacy Policy"
+          />
         </div>
-
         <Button variant="contained" color="primary">
           Save logs...
         </Button>
