@@ -11,11 +11,11 @@ interface TitleProps {
   subtitle?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ title, subtitle, toPage }) => {
+export const Header: React.FC<HeaderProps> = ({ toPage, ...titleProps }) => {
   return (
     <Box display="flex">
       <Logo />
-      <Title title={title} subtitle={subtitle} />
+      <Title {...titleProps} />
       <PageIcon page={toPage} />
     </Box>
   );
