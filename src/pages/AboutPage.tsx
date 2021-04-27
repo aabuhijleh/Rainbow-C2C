@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@material-ui/core";
+import { Button, Box, Link } from "@material-ui/core";
 import { Header } from "components/Header";
 import { labels } from "labels";
 
@@ -10,16 +10,16 @@ interface AboutLinkProps {
 
 const AboutLink: React.FC<AboutLinkProps> = ({ url, label }) => {
   return (
-    <div>
-      <a
-        style={{ textDecoration: "none" }}
+    <Box>
+      <Link
+        underline="none"
         target="_blank"
         rel="noopener noreferrer"
         href={url}
       >
         {label}
-      </a>
-    </div>
+      </Link>
+    </Box>
   );
 };
 
@@ -31,26 +31,26 @@ export const AboutPage: React.FC = () => {
   });
 
   return (
-    <div>
+    <Box>
       <Header
         title="Rainbow Click2Cal"
         subtitle={`${labels.version}: 1.7.20`}
         toPage="settings"
       />
-      <div>
-        <p>
+      <Box>
+        <Box>
           {labels.server}: {aboutData.server}
-        </p>
-        <p>
+        </Box>
+        <Box>
           {labels.telephonyAgentVersion}: {aboutData.telephonyVersion}
-        </p>
-        <p>
+        </Box>
+        <Box>
           {labels.systemIdentifier}: {aboutData.systemIdentifier}
-        </p>
-        <p>
+        </Box>
+        <Box>
           © Copyright Alcatel-Lucent Enterprise, {new Date().getUTCFullYear()}
-        </p>
-        <div>
+        </Box>
+        <Box>
           {labels.forMoreInfo}
           <AboutLink
             url="http://www.openrainbow.com"
@@ -64,15 +64,15 @@ export const AboutPage: React.FC = () => {
             url="https://www.al-enterprise.com/en/rainbow/data-privacy"
             label={labels.privacyStatement}
           />
-        </div>
+        </Box>
         <Button
           style={{ textTransform: "none" }}
           variant="contained"
           color="primary"
         >
-          Save logs...
+          {labels.saveLogs}
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
