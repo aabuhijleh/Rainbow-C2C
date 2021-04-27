@@ -11,11 +11,11 @@ interface TitleProps {
   subtitle?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ title, subtitle, toPage }) => {
+export const Header: React.FC<HeaderProps> = ({ toPage, ...titleProps }) => {
   return (
     <Box display="flex">
       <Logo />
-      <Title title={title} subtitle={subtitle} />
+      <Title {...titleProps} />
       <PageIcon page={toPage} />
     </Box>
   );
@@ -27,9 +27,9 @@ const Logo: React.FC = () => {
 
 const Title: React.FC<TitleProps> = ({ title, subtitle }) => {
   return (
-    <Typography variant="h6">
-      {title}
-      <Typography variant="subtitle2"> {subtitle}</Typography>
-    </Typography>
+    <Box>
+      <Typography variant="h6">{title}</Typography>
+      <Typography variant="subtitle2">{subtitle}</Typography>
+    </Box>
   );
 };
