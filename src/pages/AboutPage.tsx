@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
 import { Header } from "components/Header";
 
 interface AboutLinkProps {
@@ -10,7 +10,12 @@ interface AboutLinkProps {
 const AboutLink: React.FC<AboutLinkProps> = ({ url, label }) => {
   return (
     <div>
-      <a target="_blank" rel="noopener noreferrer" href={url}>
+      <a
+        style={{ textDecoration: "none" }}
+        target="_blank"
+        rel="noopener noreferrer"
+        href={url}
+      >
         {label}
       </a>
     </div>
@@ -53,7 +58,11 @@ export const AboutPage: React.FC = () => {
             label="Privacy Policy"
           />
         </div>
-        <Button variant="contained" color="primary">
+        <Button
+          style={{ textTransform: "none" }}
+          variant="contained"
+          color="primary"
+        >
           Save logs...
         </Button>
       </div>
