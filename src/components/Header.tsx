@@ -27,9 +27,9 @@ const Logo: React.FC = () => {
 
 const Title: React.FC<TitleProps> = ({ title, subtitle }) => {
   return (
-    <Typography variant="h6">
-      {title}
+    <Box>
+      <Typography variant="h6">{title}</Typography>
       <Typography variant="subtitle2">{subtitle}</Typography>
-    </Typography>
+    </Box>
   );
 };
