@@ -5,6 +5,7 @@ import {
   FormControlLabel,
   FormControl,
   FormLabel,
+  Box,
 } from "@material-ui/core";
 import { Header } from "components/Header";
 import { labels } from "labels";
@@ -32,12 +33,11 @@ const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
     <FormControl component="fieldset">
       <FormLabel component="legend">{formLabel}</FormLabel>
       <RadioGroup
-        // aria-label="gender"
         name={name}
         value={value}
         onChange={(e) => setValue(e.target.value)}
       >
-        {options.map((option, index) => (
+        {options.map((option) => (
           <FormControlLabel
             value={option.value}
             control={<Radio color="primary" />}
@@ -54,15 +54,15 @@ export const SettingsPage: React.FC = () => {
   const [currentPhoneOptions] = useState([
     {
       value: "computer",
-      label: "computer",
+      label: `${labels.computerVoIP}`,
     },
     {
       value: "officePhone",
-      label: "Office phone",
+      label: `${labels.officePhone}`,
     },
     {
       value: "otherPhone",
-      label: "Other phone",
+      label: `${labels.otherPhone}`,
     },
   ]);
   const [forwardYourCalls, setForwardYourCalls] = useState(
@@ -71,7 +71,7 @@ export const SettingsPage: React.FC = () => {
   const [forwardYourCallsOptions] = useState([
     {
       value: "cancelCallForwarding",
-      label: "Cancel call forwarding",
+      label: `${labels.dontForward}`,
     },
     {
       value: "forwardingToVoicemail",
@@ -85,29 +85,28 @@ export const SettingsPage: React.FC = () => {
   // console.log("currentPhone:", currentPhone);
   // console.log("forwardYourCalls:", forwardYourCalls);
   return (
-    <div>
+    <Box>
       <Header title={labels.telephonySettings} toPage="about" />
-      <div>
-        <p>SELECT YOUR CURRENT PHONE</p>
+      <Box>
+        <Box>{labels.selectCurrentPhone}</Box>
         <SettingsRadioGroup
           name="currentPhone"
-          formLabel="select the device for making and receiving phone calls."
+          formLabel={labels.selectNomadicModeLabel}
           options={currentPhoneOptions}
           value={currentPhone}
           setValue={(e) => setCurrentPhone(e)}
         />
-      </div>
-      <div>
-        <p>FORWARD YOUR CALLS</p>
+      </Box>
+      <Box>
+        <Box>{labels.forwardCallsTitle}</Box>
         <SettingsRadioGroup
           name="forwardYourCalls"
-          formLabel="Redirect phone calls to your voicemail or a phone number when you
-          are out of office or unavailable"
+          formLabel={labels.forwardCallsSubTitle}
           options={forwardYourCallsOptions}
           value={forwardYourCalls}
           setValue={(e) => setForwardYourCalls(e)}
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
