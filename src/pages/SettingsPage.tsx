@@ -177,20 +177,10 @@ export const SettingsPage: React.FC = () => {
         setNumber={(e) => setNumber(e)}
       />
       <Box>
-        <Button
-          style={{ textTransform: "none" }}
-          variant="contained"
-          color="primary"
-          onClick={() => {}}
-        >
+        <Button variant="contained" color="primary" onClick={() => {}}>
           {labels.cancel}
         </Button>
-        <Button
-          style={{ textTransform: "none" }}
-          variant="contained"
-          color="primary"
-          onClick={() => {}}
-        >
+        <Button variant="contained" color="primary" onClick={() => {}}>
           {labels.apply}
         </Button>
       </Box>
