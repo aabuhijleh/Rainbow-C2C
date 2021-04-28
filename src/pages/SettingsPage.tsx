@@ -6,7 +6,14 @@ import {
   FormControl,
   FormLabel,
   Box,
+  Grid,
+  Paper,
+  InputAdornment,
+  IconButton,
+  Input,
+  Button,
 } from "@material-ui/core";
+import { Backspace, LocalPhone } from "@material-ui/icons";
 import { Header } from "components/Header";
 import { labels } from "labels";
 
@@ -21,7 +28,11 @@ interface SettingsRadioGroupProps {
   value: string;
   setValue: (to: string) => void;
 }
-
+interface SettingKeyPadProps {
+  buttonsValues: string[];
+  number: string;
+  setNumber: (newNum: any) => void;
+}
 const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
   name,
   formLabel,
@@ -46,6 +57,45 @@ const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
         ))}
       </RadioGroup>
     </FormControl>
+  );
+};
+
+const SettingKeyPad: React.FC<SettingKeyPadProps> = ({
+  buttonsValues,
+  number,
+  setNumber,
+}) => {
+  return (
+    <Grid container spacing={0}>
+      <Grid item xs={12}>
+        <Input
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="delete"
+                onClick={() => setNumber(number.slice(0, -1))}
+              >
+                <Backspace fontSize="small" />
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </Grid>
+      {buttonsValues.map((button) => (
+        <Grid item xs={4}>
+          <Paper onClick={() => setNumber(`${number}${button}`)}>
+            {button}
+          </Paper>
+        </Grid>
+      ))}
+      <Grid item xs={12}>
+        <IconButton aria-label="call">
+          <LocalPhone />
+        </IconButton>
+      </Grid>
+    </Grid>
   );
 };
 
@@ -82,8 +132,22 @@ export const SettingsPage: React.FC = () => {
       label: "Forwarding to other phone",
     },
   ]);
-  // console.log("currentPhone:", currentPhone);
-  // console.log("forwardYourCalls:", forwardYourCalls);
+  const [keyPadButtons] = useState([
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "+",
+    "0",
+    "#",
+  ]);
+  const [number, setNumber] = useState("");
+
   return (
     <Box>
       <Header title={labels.telephonySettings} toPage="about" />
@@ -106,6 +170,29 @@ export const SettingsPage: React.FC = () => {
           value={forwardYourCalls}
           setValue={(e) => setForwardYourCalls(e)}
         />
+      </Box>
+      <SettingKeyPad
+        buttonsValues={keyPadButtons}
+        number={number}
+        setNumber={(e) => setNumber(e)}
+      />
+      <Box>
+        <Button
+          style={{ textTransform: "none" }}
+          variant="contained"
+          color="primary"
+          onClick={() => {}}
+        >
+          {labels.cancel}
+        </Button>
+        <Button
+          style={{ textTransform: "none" }}
+          variant="contained"
+          color="primary"
+          onClick={() => {}}
+        >
+          {labels.apply}
+        </Button>
       </Box>
     </Box>
   );
