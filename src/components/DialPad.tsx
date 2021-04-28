@@ -69,11 +69,11 @@ const CallButton: React.FC = () => {
     </Grid>
   );
 };
-export const DialPad: React.FC<DialPadProps> = ({ number, setNumber }) => {
+export const DialPad: React.FC<DialPadProps> = (props) => {
   return (
     <Box>
-      <SearchBar number={number} setNumber={setNumber} />
-      <Keys number={number} setNumber={setNumber} />
+      <SearchBar {...props} />
+      <Keys {...props} />
       <CallButton />
     </Box>
   );

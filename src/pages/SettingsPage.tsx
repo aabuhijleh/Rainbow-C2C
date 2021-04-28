@@ -39,6 +39,7 @@ export const SettingsPage: React.FC = () => {
     },
   ]);
   const [number, setNumber] = useState("");
+  const [otherPhoneNumber, setOtherPhoneNumber] = useState("");
 
   return (
     <Box>
@@ -50,6 +51,8 @@ export const SettingsPage: React.FC = () => {
         options={currentPhoneOptions}
         value={currentPhone}
         setValue={(to) => setCurrentPhone(to)}
+        otherPhoneNumber={otherPhoneNumber}
+        setOtherPhoneNumber={(to) => setOtherPhoneNumber(to)}
       />
       <SettingsRadioGroup
         name="forwardYourCalls"
@@ -58,6 +61,8 @@ export const SettingsPage: React.FC = () => {
         options={forwardYourCallsOptions}
         value={forwardYourCalls}
         setValue={(to) => setForwardYourCalls(to)}
+        otherPhoneNumber={otherPhoneNumber}
+        setOtherPhoneNumber={(to) => setOtherPhoneNumber(to)}
       />
       <DialPad number={number} setNumber={(to) => setNumber(to)} />
       <Box>

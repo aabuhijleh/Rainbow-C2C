@@ -6,7 +6,11 @@ import {
   FormControl,
   FormLabel,
   Box,
+  InputAdornment,
+  Input,
+  IconButton,
 } from "@material-ui/core";
+import { Backspace } from "@material-ui/icons";
 
 interface Options {
   value: string;
@@ -19,6 +23,8 @@ interface SettingsRadioGroupProps {
   options: Options[];
   value: string;
   setValue: (to: string) => void;
+  otherPhoneNumber: string;
+  setOtherPhoneNumber: (to: string) => void;
 }
 
 export const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
@@ -28,6 +34,8 @@ export const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
   options,
   value,
   setValue,
+  otherPhoneNumber,
+  setOtherPhoneNumber,
 }) => {
   return (
     <Box>
@@ -40,12 +48,32 @@ export const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
           onChange={(e) => setValue(e.target.value)}
         >
           {options.map((option, index) => (
-            <FormControlLabel
-              key={index}
-              value={option.value}
-              control={<Radio color="primary" />}
-              label={option.label}
-            />
+            <Box key={index}>
+              <FormControlLabel
+                value={option.value}
+                control={<Radio color="primary" />}
+                label={option.label}
+              />
+              {value === "forwardingToOtherPhone" &&
+              option.value === "forwardingToOtherPhone" ? (
+                <Input
+                  value={otherPhoneNumber}
+                  onChange={(e) => setOtherPhoneNumber(e.target.value)}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="delete"
+                        onClick={() =>
+                          setOtherPhoneNumber(otherPhoneNumber.slice(0, -1))
+                        }
+                      >
+                        <Backspace fontSize="small" />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              ) : null}
+            </Box>
           ))}
         </RadioGroup>
       </FormControl>
