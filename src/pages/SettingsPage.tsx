@@ -7,7 +7,6 @@ import {
   FormLabel,
   Box,
   Grid,
-  Paper,
   InputAdornment,
   IconButton,
   Input,
@@ -48,8 +47,9 @@ const SettingsRadioGroup: React.FC<SettingsRadioGroupProps> = ({
         value={value}
         onChange={(e) => setValue(e.target.value)}
       >
-        {options.map((option) => (
+        {options.map((option, index) => (
           <FormControlLabel
+            key={index}
             value={option.value}
             control={<Radio color="primary" />}
             label={option.label}
@@ -83,11 +83,11 @@ const SettingKeyPad: React.FC<SettingKeyPadProps> = ({
           }
         />
       </Grid>
-      {buttonsValues.map((button) => (
-        <Grid item xs={4}>
-          <Paper onClick={() => setNumber(`${number}${button}`)}>
+      {buttonsValues.map((button, index) => (
+        <Grid item xs={4} key={index}>
+          <Button onClick={() => setNumber(`${number}${button}`)}>
             {button}
-          </Paper>
+          </Button>
         </Grid>
       ))}
       <Grid item xs={12}>
