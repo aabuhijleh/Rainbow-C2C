@@ -51,8 +51,6 @@ export const SettingsPage: React.FC = () => {
         options={currentPhoneOptions}
         value={currentPhone}
         setValue={(to) => setCurrentPhone(to)}
-        otherPhoneNumber={otherPhoneNumber}
-        setOtherPhoneNumber={(to) => setOtherPhoneNumber(to)}
       />
       <SettingsRadioGroup
         name="forwardYourCalls"
